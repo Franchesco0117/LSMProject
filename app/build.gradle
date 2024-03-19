@@ -4,11 +4,11 @@ plugins {
 
 android {
     namespace 'com.francisco.lsmproyect'
-    compileSdk 33
+    compileSdk 34
 
     defaultConfig {
         applicationId "com.francisco.lsmproyect"
-        minSdk 21
+        minSdkVersion 21
         targetSdk 33
         versionCode 1
         versionName "1.0"
@@ -26,6 +26,14 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+    sourceSets {
+        main {
+            jni {
+                srcDirs 'src\\main\\jni', 'src\\main\\jnilibs'
+            }
+        }
+    }
+    buildToolsVersion '33.0.1'
 }
 
 dependencies {
@@ -37,4 +45,5 @@ dependencies {
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+
 }
