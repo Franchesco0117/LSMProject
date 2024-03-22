@@ -47,8 +47,8 @@ public class objectDetectorClass {
         INPUT_SIZE = inputSize;
         // options usado para definir la GPU, CPU o numero de threads
         Interpreter.Options options = new Interpreter.Options();
-        gpuDelegate = new GpuDelegate();
-        options.addDelegate(gpuDelegate);
+        //gpuDelegate = new GpuDelegate();
+        //options.addDelegate(gpuDelegate);
         options.setNumThreads(4); // Poner la cantidad de hilos segun el celular (!!!)
 
         // Cargando modelo
@@ -91,7 +91,10 @@ public class objectDetectorClass {
     public Mat recognizeImage(Mat matImage) {
         // Rotar la imagen original por 90 grados para tener modo retrato
         Mat rotatedMatImage = new Mat();
-        Core.flip(matImage.t(), rotatedMatImage, 1);
+
+        Mat a = matImage.t();
+        Core.flip(a, rotatedMatImage, 1);
+        a.release();
 
         // Si no haces sete proceso, obtendras menos predicciones correctas, menos numero de objectos
         // Ahora convertir a Bitmap
@@ -165,14 +168,16 @@ public class objectDetectorClass {
         }
 
         // Antes de return, rotar la imagen otra vez por -90 grados
-        Core.flip(rotatedMatImage.t(), matImage, 0);
+        Mat b = rotatedMatImage.t();
+        Core.flip(b, matImage, 0);
+        b.release();
 
         return matImage;
     }
 
     private ByteBuffer convertBitmapToByteBuffer(Bitmap bitmap) {
         ByteBuffer byteBuffer;
-        int quant = 0;
+        int quant = 1;
         int sizeImages = INPUT_SIZE;
 
         // Algunos modelos Input deberian de quant = 0; para algunos otros quant = 1;

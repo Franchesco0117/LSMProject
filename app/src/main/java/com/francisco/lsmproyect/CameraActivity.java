@@ -69,7 +69,7 @@ public class CameraActivity extends Activity implements CameraBridgeViewBase.CvC
 
         try {
             objectDetectorClass = new objectDetectorClass
-                    (getAssets(), "ssd_mobilenet.tflite", "labelmap.txt", 300);
+                    (getAssets(), "custom_model.tflite", "custom_label.txt", 320);
             Log.d("MainActivity", "Modelo exitosamente cargado");
 
         } catch (IOException e) {

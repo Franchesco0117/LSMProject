@@ -427,10 +427,41 @@ public abstract class CameraBridgeViewBase extends SurfaceView implements Surfac
         if (bmpValid && mCacheBitmap != null) {
             Canvas canvas = getHolder().lockCanvas();
 
+            /*
+            float mScale1 = 0;
+            float mScale2 = 0;
+
+            if (canvas.getHeight() > canvas.getWidth()) {
+                canvas.rotate(90f, canvas.getWidth()/2, canvas.getHeight()/2);
+
+                mScale1 = (float) canvas.getHeight()/();
+                mScale2 = (float) 1.5f;
+            } else {
+                mScale1 = 1.4f;
+                mScale2 = 1.3f;
+            }
+             */
+
             if (canvas != null) {
                 canvas.drawColor(0, android.graphics.PorterDuff.Mode.CLEAR);
                 if (BuildConfig.DEBUG)
                     Log.d(TAG, "mStretch value: " + mScale);
+
+                /*
+                if (mScale1 != 0) {
+                    canvas.drawBitmap(mCacheBitmap, new Rect(0, 0, mCacheBitmap.getWidth(), mCacheBitmap.getHeight()),
+                            new Rect((int) ((canvas.getWidth() - mScale1 * mCacheBitmap.getWidth()) / 2),
+                                    (int) ((canvas.getHeight() - mScale2 * mCacheBitmap.getHeight()) / 2),
+                                    (int) ((canvas.getWidth() - mScale1 * mCacheBitmap.getWidth()) / 2 + mScale1 * mCacheBitmap.getWidth()),
+                                    (int) ((canvas.getHeight() - mScale2 * mCacheBitmap.getHeight()) / 2 + mScale2 * mCacheBitmap.getHeight())), null);
+                } else {
+                    canvas.drawBitmap(mCacheBitmap, new Rect(0, 0, mCacheBitmap.getWidth(), mCacheBitmap.getHeight()),
+                            new Rect((canvas.getWidth() - mCacheBitmap.getWidth()) / 2,
+                                    (canvas.getHeight() - mCacheBitmap.getHeight()) / 2,
+                                    (canvas.getWidth() - mCacheBitmap.getWidth()) / 2 + mCacheBitmap.getWidth(),
+                                    (canvas.getHeight() - mCacheBitmap.getHeight()) / 2 + mCacheBitmap.getHeight()), null);
+                }
+                 */
 
                 Matrix matrix= new Matrix();
                 matrix.preTranslate((canvas.getWidth() - mCacheBitmap.getWidth())/2, (canvas.getHeight() - mCacheBitmap.getHeight())/2);
