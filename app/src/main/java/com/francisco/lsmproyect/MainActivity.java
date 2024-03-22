@@ -10,6 +10,8 @@ import android.widget.Button;
 
 import org.opencv.android.OpenCVLoader;
 
+import java.io.IOException;
+
 public class MainActivity extends AppCompatActivity {
 
     static {

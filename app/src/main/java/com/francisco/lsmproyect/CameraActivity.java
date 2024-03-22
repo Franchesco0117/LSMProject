@@ -23,6 +23,7 @@ import org.opencv.android.OpenCVLoader;
 import org.opencv.core.CvType;
 import org.opencv.core.Mat;
 
+import java.io.IOException;
 import java.util.Collections;
 import java.util.List;
 
@@ -32,9 +33,9 @@ public class CameraActivity extends Activity implements CameraBridgeViewBase.CvC
     private Mat mRgba;
     private Mat mGrey;
     private CameraBridgeViewBase mOpenCvCameraView;
-
     private static final int MY_CAMERA_REQUEST_CODE = 100;
     int activeCamera = CameraBridgeViewBase.CAMERA_ID_BACK;
+    private objectDetectorClass objectDetectorClass;
     private BaseLoaderCallback mLoaderCallBack = new BaseLoaderCallback(this) {
         @Override
         public void onManagerConnected(int status) {
@@ -65,6 +66,16 @@ public class CameraActivity extends Activity implements CameraBridgeViewBase.CvC
 
         setContentView(R.layout.activity_camera);
         mOpenCvCameraView = (CameraBridgeViewBase) findViewById(R.id.frameSurface);
+
+        try {
+            objectDetectorClass = new objectDetectorClass
+                    (getAssets(), "ssd_mobilenet.tflite", "labelmap.txt", 300);
+            Log.d("MainActivity", "Modelo exitosamente cargado");
+
+        } catch (IOException e) {
+            Log.d("MainActivity", "Error");
+            e.printStackTrace();
+        }
 
         // checking if the permission has already been granted
         if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.CAMERA)
@@ -142,6 +153,10 @@ public class CameraActivity extends Activity implements CameraBridgeViewBase.CvC
     public Mat onCameraFrame(CameraBridgeViewBase.CvCameraViewFrame inputFrame) {
         mRgba = inputFrame.rgba();
         mGrey = inputFrame.gray();
-        return mRgba;
+
+        Mat out = new Mat();
+        out = objectDetectorClass.recognizeImage(mRgba);
+
+        return out;
     }
 }
