@@ -3,11 +3,13 @@ package com.francisco.lsmproyect;
 import android.content.res.AssetFileDescriptor;
 import android.content.res.AssetManager;
 import android.graphics.Bitmap;
+import android.util.Log;
 
 import org.opencv.android.Utils;
 import org.opencv.core.Core;
 import org.opencv.core.Mat;
 import org.opencv.core.Point;
+import org.opencv.core.Rect;
 import org.opencv.core.Scalar;
 import org.opencv.imgproc.Imgproc;
 import org.tensorflow.lite.Interpreter;
@@ -28,8 +30,10 @@ import java.util.Map;
 import java.util.TreeMap;
 
 public class objectDetectorClass {
-    //interpreter es usado para cargar el modelo y predecir
+    // interpreter es usado para cargar el modelo y predecir
     private Interpreter interpreter;
+    // Crear otro interpreter para el modelo Sign_language_model
+    private Interpreter interpreter2;
 
     // Almacenar todas las etiquetas(labelmap) en este arreglo
     private List<String> labelList;
@@ -42,9 +46,13 @@ public class objectDetectorClass {
     private GpuDelegate gpuDelegate;
     private int height = 0;
     private int width = 0;
+    private int ClassificationInputSize = 0;
 
-    objectDetectorClass(AssetManager assetManager, String modelPath, String labelPath, int inputSize) throws IOException {
+    objectDetectorClass
+            (AssetManager assetManager, String modelPath, String labelPath, int inputSize, String classificationModel, int classificationInput) throws IOException {
         INPUT_SIZE = inputSize;
+        ClassificationInputSize = classificationInput;
+
         // options usado para definir la GPU, CPU o numero de threads
         Interpreter.Options options = new Interpreter.Options();
         //gpuDelegate = new GpuDelegate();
@@ -56,6 +64,10 @@ public class objectDetectorClass {
 
         // Cargar labelmap
         labelList = loadLabelList(assetManager, labelPath);
+
+        Interpreter.Options options2 = new Interpreter.Options();
+        options2.setNumThreads(2);
+        interpreter2 = new Interpreter(loadModelFile(assetManager, classificationModel), options2);
     }
 
     private ByteBuffer loadModelFile(AssetManager assetManager, String modelPath) throws IOException {
@@ -154,16 +166,67 @@ public class objectDetectorClass {
                 Object box1 = Array.get(Array.get(value, 0), i);
 
                 // Lo estamos multiplicando con el tamaño orignal y la altura del frame
-                float top = (float) Array.get(box1, 0)*height;
-                float left = (float) Array.get(box1, 1)*width;
-                float bottom = (float) Array.get(box1, 2)*height;
-                float right = (float) Array.get(box1, 3)*width;
+                float y1 = (float) Array.get(box1, 0)*height;
+                float x1 = (float) Array.get(box1, 1)*width;
+                float y2 = (float) Array.get(box1, 2)*height;
+                float x2 = (float) Array.get(box1, 3)*width;
+
+                //Establecer límite límite
+                if (y1 < 0) {
+                    y1 = 0;
+                }
+
+                if (x1 < 0) {
+                    x1 = 0;
+                }
+
+                if (x2 > width) {
+                    x2 = width;
+                }
+
+                if (y2 > height) {
+                    y2 = height;
+                }
+
+                // Ahora poner el alto(height) y ancho(width) de la caja
+                float w1 = x2 - x1;
+                float h1 = y2 - y1;
+                // (x1, y1) punto inicial de la mano
+                // (x2, y2) punto final de la mano
+                // Recortar imagen de mano del marco original
+                Rect croppedRoi = new Rect((int)x1, (int)y1, (int)w1, (int)h1);
+                Mat cropped = new Mat(rotatedMatImage, croppedRoi).clone();
+
+                //Ahora convertir el Mat recortado a Bitmap
+                Bitmap bitmap1 = null;
+                bitmap1 = Bitmap.createBitmap(cropped.cols(), cropped.rows(), Bitmap.Config.ARGB_8888);
+                Utils.matToBitmap(cropped, bitmap1);
+
+                // Cambiar tamaño de Bitmap a Classification input size = 96;
+                Bitmap scaleBitmap1 = Bitmap.createScaledBitmap
+                        (bitmap1, ClassificationInputSize, ClassificationInputSize, false);
+                // Convertir scaleBitmap1 a byte buffer
+                ByteBuffer byteBuffer1 = convertBitmapToByteBuffer1(scaleBitmap1);
+
+                //Crear un arreglo para la salida de interpreter2
+                float[][] outputClassValue = new float[1][1];
+
+                // Predecir salida para byteBuffer1
+                interpreter2.run(byteBuffer1, outputClassValue);
+
+                // OPCIONAL: Para ver los valores de outputClassValue
+                Log.d("objectDetectionClass", "outputClassValue:" + outputClassValue[0][0]);
+
+                // Converir outputClassValue a Alfabeto
+                String signVal = getAlphabets(outputClassValue[0][0]);
 
                 // Dibujar rectangulo en el frame original  - Punto inicial box   - Punto final box       - color de box     - grueso
-                Imgproc.rectangle(rotatedMatImage, new Point(left, top), new Point(right, bottom), new Scalar(255, 155, 155), 2);
+                Imgproc.rectangle(rotatedMatImage, new Point(x1, y1), new Point(x2, y2), new Scalar(255, 155, 155), 2);
 
-                // Escribir texto en el frame  - String del nombre de la clase obj   - Punto inicial                             - Color de texto       - Tamaño texto
-                Imgproc.putText(rotatedMatImage, labelList.get((int) classValue), new Point(left, top), 3, 1,  new Scalar(255, 255, 255), 2);
+                // Escribir texto en el frame
+                //              - input / output   - text                  - Punto inicial          - Tamaño texto                         - Color de texto
+                Imgproc.putText(rotatedMatImage, "" + signVal, new Point(x1+10, y1+40), 2, 1.5,  new Scalar(255, 255, 255, 255), 2);
+
             }
         }
 
@@ -208,6 +271,100 @@ public class objectDetectorClass {
         }
 
         return byteBuffer;
+    }
+
+    private ByteBuffer convertBitmapToByteBuffer1(Bitmap bitmap) {
+        ByteBuffer byteBuffer;
+        int quant = 1;
+        //Cambiar el input size
+        int sizeImages = ClassificationInputSize;
+
+        // Algunos modelos Input deberian de quant = 0; para algunos otros quant = 1;
+        if (quant == 0) {
+            byteBuffer = ByteBuffer.allocateDirect(1*sizeImages*sizeImages*3);
+        } else {
+            byteBuffer = ByteBuffer.allocateDirect(4*1*sizeImages*sizeImages*3);
+        }
+
+        byteBuffer.order(ByteOrder.nativeOrder());
+        int[] intValues = new int[sizeImages*sizeImages];
+        bitmap.getPixels(intValues, 0, bitmap.getWidth(), 0, 0, bitmap.getWidth(), bitmap.getHeight());
+        int pixel = 0;
+
+        for (int i = 0; i < sizeImages; ++i) {
+            for (int j = 0; j < sizeImages; ++j) {
+                final int val = intValues[pixel++];
+                if (quant == 0) {
+                    byteBuffer.put((byte) ((val >> 16 ) & 0xFF));
+                    byteBuffer.put((byte) ((val >> 8 ) & 0xFF));
+                    byteBuffer.put((byte) (val & 0xFF));
+                } else {
+                    byteBuffer.putFloat((((val >> 16) & 0xFF)));
+                    byteBuffer.putFloat((((val >> 8) & 0xFF)));
+                    byteBuffer.putFloat((((val) & 0xFF)));
+                }
+            }
+        }
+
+        return byteBuffer;
+    }
+
+    private String getAlphabets(float signV) {
+        String val = "";
+
+        if (signV >= -0.5 & signV < 0.5) {
+            val = "A";
+        } else if (signV >= 0.5 & signV < 1.5) {
+            val = "B";
+        } else if (signV >= 1.5 & signV < 2.5) {
+            val = "C";
+        } else if (signV >= 2.5 & signV < 3.5) {
+            val = "D";
+        } else if (signV >= 3.5 & signV < 4.5) {
+            val = "E";
+        } else if (signV >= 4.5 & signV < 5.5) {
+            val = "F";
+        } else if (signV >= 5.5 & signV < 6.5) {
+            val = "G";
+        } else if (signV >= 6.5 & signV < 7.5) {
+            val = "H";
+        } else if (signV >= 7.5 & signV < 8.5) {
+            val = "I";
+        } else if (signV >= 8.5 & signV < 9.5) {
+            val = "J";
+        } else if (signV >= 9.5 & signV < 10.5) {
+            val = "K";
+        } else if (signV >= 10.5 & signV < 11.5) {
+            val = "L";
+        } else if (signV >= 11.5 & signV < 12.5) {
+            val = "M";
+        } else if (signV >= 12.5 & signV < 13.5) {
+            val = "N";
+        } else if (signV >= 13.5 & signV < 14.5) {
+            val = "O";
+        } else if (signV >= 14.5 & signV < 15.5) {
+            val = "P";
+        } else if (signV >= 15.5 & signV < 16.5) {
+            val = "Q";
+        } else if (signV >= 16.5 & signV < 17.5) {
+            val = "R";
+        } else if (signV >= 17.5 & signV < 18.5) {
+            val = "S";
+        } else if (signV >= 18.5 & signV < 19.5) {
+            val = "T";
+        } else if (signV >= 19.5 & signV < 20.5) {
+            val = "U";
+        } else if (signV >= 20.5 & signV < 21.5) {
+            val = "V";
+        } else if (signV >= 21.5 & signV < 22.5) {
+            val = "W";
+        } else if (signV >= 22.5 & signV < 23.5) {
+            val = "X";
+        } else {
+            val = "Y";
+        }
+
+        return val;
     }
 
 }
