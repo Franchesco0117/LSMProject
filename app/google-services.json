@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "500300615507",
+    "project_id": "mexican-sign-language-app",
+    "storage_bucket": "mexican-sign-language-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:500300615507:android:995874c385ea0179749ba6",
+        "android_client_info": {
+          "package_name": "com.francisco.lsmproyect"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD0Nkre4xTfqRONECe7mt6jUsWwHVCVhBo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

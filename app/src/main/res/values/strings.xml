@@ -1,3 +1,27 @@
 <resources>
     <string name="app_name">LSMProyect</string>
+
+    <!-- MainActivity -->
+    <string name="tv_welcome">Welcome</string>
+
+    <!-- SignInFragment -->
+    <string name="et_name">Name</string>
+    <string name="content_description_start_icon_name">Name Icon</string>
+    <string name="et_username">Username</string>
+    <string name="content_description_start_icon_username">Username Icon</string>
+    <string name="et_sign_up_email">Email</string>
+    <string name="content_description_start_icon_email">Email Icon</string>
+    <string name="et_phone">Enter your mobile no.</string>
+    <string name="content_description_start_icon_phone">Phone Icon</string>
+    <string name="et_date_brith">Enter your date birth (dd/mm/yyyy)</string>
+    <string name="content_description_start_icon_date_birth"></string>
+    <string name="et_sign_up_password">Password</string>
+    <string name="content_description_start_icon_password">Password Icon</string>
+    <string name="et_sign_up_password_confirm">Confirm Password</string>
+    <string name="btn_sign_up">Sign Up</string>
+
+    <!-- LoginFragment -->
+    <string name="btn_login">Login</string>
+    <string name="tv_password_backup">Forgotten your password?</string>
+
 </resources>
