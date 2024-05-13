@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "500300615507",
+    "firebase_url": "https://mexican-sign-language-app-default-rtdb.firebaseio.com",
     "project_id": "mexican-sign-language-app",
     "storage_bucket": "mexican-sign-language-app.appspot.com"
   },
@@ -12,7 +13,20 @@
           "package_name": "com.francisco.lsmproyect"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "500300615507-geahov1a8vr6f7hot9fdul0eo775kc76.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.francisco.lsmproyect",
+            "certificate_hash": "b1073c7db81761f44da0264f80169d9dc42fc78e"
+          }
+        },
+        {
+          "client_id": "500300615507-7t5u4m2g6n9pou6tnafd7uqsq1kevktf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyD0Nkre4xTfqRONECe7mt6jUsWwHVCVhBo"
@@ -20,7 +34,12 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "500300615507-7t5u4m2g6n9pou6tnafd7uqsq1kevktf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }

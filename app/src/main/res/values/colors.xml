@@ -3,10 +3,14 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
+    //blueGrotto and navvyBlue
     <color name="babyBlue">#BFD7ED</color>
-    <color name="blueGrotto___">#60A3D9</color>
-    <color name="royalBlue___">#0074B7</color>
+    <color name="blueGrotto">#60A3D9</color>
+    <color name="royalBlue">#0074B7</color> // Color Principal
     <color name="navyBlue">#003B73</color>
+
+    <color name="gray">#AFAFAF</color>
+    <color name="gray_bolder">#6A6A6A</color>
 
     <color name="seed">#60A3D9</color>
     <color name="md_theme_light_primary">#006397</color>

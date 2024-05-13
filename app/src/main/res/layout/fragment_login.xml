@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -29,7 +29,7 @@
                     android:src="@drawable/undraw_login"/>
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/etLoginEmail"
+                    android:id="@+id/tlLoginEmail"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -39,6 +39,7 @@
                     android:layout_marginTop="20dp">
 
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etLoginEmail"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="textEmailAddress" />
@@ -46,29 +47,55 @@
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/etLoginPassword"
+                    android:id="@+id/tlLoginPassword"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:hint="@string/et_sign_up_password"
                     app:startIconDrawable="@drawable/baseline_lock_24"
                     app:startIconContentDescription="string/content_description_start_icon_password"
-                    android:layout_marginTop="20dp"
-                    app:endIconMode="password_toggle">
+                    android:layout_marginTop="20dp">
 
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etLoginPassword"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="textPassword" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
+                <CheckBox
+                    android:id="@+id/cbHidePassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/cb_sign_up_hide_password"/>
+
+                <Button
+                    android:id="@+id/btnLogin"
+                    android:layout_width="match_parent"
+                    android:layout_height="67dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="10dp"
+                    android:textSize="18sp"
+                    android:text="@string/btn_login"
+                    android:textAllCaps="true" />
+
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:id="@+id/tvForgotPassword"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/tv_password_backup"
                     android:layout_marginTop="5dp"
-                    android:layout_marginBottom="8dp"/>
+                    android:layout_marginBottom="8dp"
+                    android:textAlignment="textEnd"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/tv_or"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:textAlignment="center"/>
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
@@ -80,50 +107,47 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="10dp"
+                        android:src="@drawable/icon_google"
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintEnd_toStartOf="@+id/facebook"
-                        app:layout_constraintBottom_toBottomOf="parent"/>
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        android:enabled="false"/>
 
                     <com.google.android.material.floatingactionbutton.FloatingActionButton
                         android:id="@+id/facebook"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="10dp"
+                        android:src="@drawable/icon_facebook"
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintStart_toEndOf="@+id/google"
-                        app:layout_constraintEnd_toStartOf="@+id/twitter"/>
+                        app:layout_constraintEnd_toStartOf="@+id/twitter"
+                        android:enabled="false" />
 
                     <com.google.android.material.floatingactionbutton.FloatingActionButton
                         android:id="@+id/twitter"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="10dp"
+                        android:src="@drawable/icon_x"
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintStart_toEndOf="@+id/facebook"
-                        app:layout_constraintEnd_toStartOf="@+id/github"/>
+                        app:layout_constraintEnd_toStartOf="@+id/github"
+                        android:enabled="false" />
 
                     <com.google.android.material.floatingactionbutton.FloatingActionButton
                         android:id="@+id/github"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="10dp"
+                        android:src="@drawable/icon_github"
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintStart_toEndOf="@+id/twitter"
-                        app:layout_constraintEnd_toEndOf="parent"/>
+                        app:layout_constraintEnd_toEndOf="parent"
+                        android:enabled="false" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
-
-                <Button
-                    android:id="@+id/btnLogin"
-                    android:layout_width="325dp"
-                    android:layout_height="67dp"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="30dp"
-                    android:textSize="18sp"
-                    android:text="@string/btn_login"
-                    android:textAllCaps="true"
-                    android:backgroundTint="@color/navyBlue"/>
 
             </LinearLayout>
 
@@ -131,4 +155,13 @@
 
     </ScrollView>
 
-</LinearLayout>
+    <ProgressBar
+        android:id="@+id/progressLoginBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:elevation="10dp"
+        android:visibility="invisible"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"/>
+
+</RelativeLayout>

@@ -28,57 +28,54 @@
                     android:layout_height="200dp"
                     android:src="@drawable/undraw_signup"/>
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/etName"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:hint="@string/et_name"
-                    app:startIconDrawable="@drawable/baseline_person_outline_24"
-                    app:startIconContentDescription="@string/content_description_start_icon_name"
-                    android:layout_marginTop="20dp">
+                    android:orientation="horizontal"
+                    android:layout_marginTop="15dp">
 
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:layout_width="match_parent"
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/tlName"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:inputType="textPersonName"/>
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
+                        android:hint="@string/et_name"
+                        app:startIconDrawable="@drawable/baseline_person_outline_24"
+                        app:startIconContentDescription="@string/content_description_start_icon_name"
+                        android:layout_marginEnd="5dp">
 
-                </com.google.android.material.textfield.TextInputLayout>
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/etName"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="textPersonName"/>
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/tlUsername"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
+                        android:hint="@string/et_username"
+                        app:startIconDrawable="@drawable/baseline_person_24"
+                        app:startIconContentDescription="@string/content_description_start_icon_username"
+                        android:layout_marginStart="5dp">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/etUsername"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="textPersonName"/>
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                </LinearLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/etUsername"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:hint="@string/et_username"
-                    app:startIconDrawable="@drawable/baseline_person_24"
-                    app:startIconContentDescription="@string/content_description_start_icon_username"
-                    android:layout_marginTop="20dp">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="textPersonName"/>
-
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/etDateBirth"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:hint="@string/et_date_brith"
-                    android:layout_marginTop="20dp">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="textEmailAddress" />
-
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/etTelephoneNumber"
+                    android:id="@+id/tlTelephoneNumber"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -88,15 +85,82 @@
                     android:layout_marginTop="20dp">
 
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etTelephoneNumber"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="phone" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="15dp">
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/tlDateOfBirth"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
+                        android:hint="@string/et_date_of_birth"
+                        app:startIconDrawable="@drawable/baseline_calendar_today_24"
+                        app:startIconContentDescription="@string/content_description_start_icon_username"
+                        android:layout_marginEnd="5dp">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/etDateOfBirth"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="textPersonName"/>
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/tlLocation"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
+                        android:hint="@string/et_location"
+                        app:startIconDrawable="@drawable/baseline_add_location_24"
+                        app:startIconContentDescription="@string/content_description_start_icon_location"
+                        android:layout_marginStart="5dp">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/etSignUpLocation"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="textPersonName"/>
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                </LinearLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/etSignUpEmail"
+                    android:id="@+id/tlSignUpBio"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:hint="@string/et_bio"
+                    android:layout_marginTop="20dp">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etSignUpBio"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textMultiLine"
+                        android:lines="3"
+                        android:gravity="top"
+                        android:scrollbars="vertical"
+                        android:scrollbarStyle="insideInset"
+                        android:scrollHorizontally="false"/>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/tlSignUpEmail"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -106,6 +170,7 @@
                     android:layout_marginTop="20dp">
 
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etSignUpEmail"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="textEmailAddress" />
@@ -113,40 +178,52 @@
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/etSignUpPassword"
+                    android:id="@+id/tlSignUpPassword"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:hint="@string/et_sign_up_password"
                     app:startIconDrawable="@drawable/baseline_password_24"
                     app:startIconContentDescription="string/content_description_start_icon_password"
-                    android:layout_marginTop="20dp"
-                    app:endIconMode="password_toggle">
+                    android:layout_marginTop="20dp">
 
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etSignUpPassword"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="textPassword" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
+                <CheckBox
+                    android:id="@+id/cbHidePassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/cb_sign_up_hide_password"/>
+
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/etSignUpPasswordConfirm"
+                    android:id="@+id/tlSignUpPasswordConfirm"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:hint="@string/et_sign_up_password_confirm"
                     app:startIconDrawable="@drawable/baseline_lock_24"
                     app:startIconContentDescription="string/content_description_start_icon_password"
-                    android:layout_marginTop="20dp"
-                    app:endIconMode="password_toggle">
+                    android:layout_marginTop="20dp">
 
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etSignUpPasswordConfirm"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="textPassword" />
 
                 </com.google.android.material.textfield.TextInputLayout>
+
+                <CheckBox
+                    android:id="@+id/cbHidePasswordConfirmation"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/cb_sign_up_hide_password"/>
 
                 <Button
                     android:id="@+id/btnSignUp"
@@ -156,8 +233,7 @@
                     android:layout_marginTop="30dp"
                     android:textSize="18sp"
                     android:text="@string/btn_login"
-                    android:textAllCaps="true"
-                    android:backgroundTint="@color/navyBlue"/>
+                    android:textAllCaps="true" />
 
             </LinearLayout>
 

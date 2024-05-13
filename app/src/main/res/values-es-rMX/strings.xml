@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- MainActivity -->
+    <string name="tv_welcome">Bienvenido</string>
+
+    <!-- SignInFragment -->
+    <string name="et_name">Nombre</string>
+    <string name="content_description_start_icon_name">Ícono de Nombre</string>
+    <string name="et_username">Usuario</string>
+    <string name="content_description_start_icon_username">Ícono de Usuario</string>
+    <string name="et_sign_up_email">Correo electrónico</string>
+    <string name="content_description_start_icon_email">Ícono de Correo electrónico</string>
+    <string name="et_phone">Ingresa tu número de móvil</string>
+    <string name="content_description_start_icon_phone">Ícono de Teléfono</string>
+    <string name="et_date_of_birth">dd/mm/aaaa</string>
+    <string name="content_description_start_icon_date_of_birth">Ícono de Fecha de nacimiento</string>
+    <string name="et_location">Ubicación</string>
+    <string name="et_bio">Biografía</string>
+    <string name="content_description_start_icon_location">Ícono de Ubicación</string>
+    <string name="et_sign_up_password">Contraseña</string>
+    <string name="content_description_start_icon_password">Ícono de Contraseña</string>
+    <string name="et_sign_up_password_confirm">Confirmar Contraseña</string>
+    <string name="cb_sign_up_hide_password">Mostrar Contraseña</string>
+    <string name="btn_sign_up">Registrarse</string>
+
+    <!-- LoginFragment -->
+    <string name="btn_login">Iniciar sesión</string>
+    <string name="tv_password_backup">¿Olvidaste tu contraseña?</string>
+    <string name="tv_or">O</string>
+
+    <!-- MenuActivity -->
+    <string name="menu_home">Inicio</string>
+    <string name="menu_profile">Perfil</string>
+    <string name="menu_settings">Configuración</string>
+
+    <string name="hello_home_fragment">Hola fragmento de Inicio</string>
+    <string name="hello_profile_fragment">Hola fragmento de Perfil</string>
+    <string name="hello_settings_fragment">Hola fragmento de Configuración</string>
+
+    <!-- WelcomeActivity -->
+    <string name="heading_welcome">Bienvenido a LSMApp</string>
+    <string name="desc_welcome">Accede a una variedad de cursos para aprender Lenguaje de Señas Mexicano (LSM) de manera interactiva y entretenida.</string>
+    <string name="content_description_welcome_image">Imagen de Bienvenida</string>
+
+    <string name="heading_courses">Cursos</string>
+    <string name="desc_courses">Visualiza tu perfil de usuario, incluyendo estadísticas de progreso y logros obtenidos dentro de la aplicación.</string>
+    <string name="content_description_courses_image">Ejemplo de Imagen de Cursos</string>
+
+    <string name="heading_profile">Perfil</string>
+    <string name="desc_profile">Personaliza tu experiencia ajustando configuraciones como notificaciones, preferencias de idioma y otras configuraciones de la aplicación.</string>
+    <string name="content_description_profile_image">Ejemplo de Imagen de Perfil</string>
+
+    <string name="btn_skip">Saltar</string>
+    <string name="btn_back">Atrás</string>
+    <string name="btn_next">Siguiente</string>
+
+    <!-- ProfileFragment -->
+    <string name="content_description_image_profile">Imagen de Perfil</string>
+    <string name="tv_name">Cargando nombre…</string>
+    <string name="tv_username">Cargando usuario…</string>
+    <string name="content_description_image_button_refresh">Ícono de Actualizar</string>
+    <string name="content_description_image_button_edit_profile">Ícono de Editar Perfil</string>
+
+    <string name="tv_level">Nivel</string>
+    <string name="tv_level_loading">--</string>
+
+    <string name="tv_user_statistics_header">Estadísticas del Usuario</string>
+    <string name="tv_courses_completed_header">Cursos Completados</string>
+    <string name="tv_curses_completed">--</string>
+    <string name="tv_streak_header">Racha</string>
+    <string name="tv_streak">--</string>
+    <string name="tv_total_experience_header">Experiencia Total</string>
+    <string name="tv_total_experience">--</string>
+
+    <string name="tv_user_details_header">Detalles del Usuario</string>
+
+    <string name="tv_user_bio_header">Biografía</string>
+    <string name="tv_user_bio_loading">Cargando biografía…</string>
+
+    <string name="tv_user_location_header">Ubicación</string>
+    <string name="tv_user_location_loading">Cargando ubicación…</string>
+    <string name="tv_user_day_of_birth_header">Fecha de Nacimiento</string>
+    <string name="tv_user_day_of_birth_loading">Cargando fecha de nacimiento…</string>
+
+    <string name="tv_user">¡Hola!</string>
+
+    <!-- SettingsFragment -->
+    <string name="tv_system_header">Sistema</string>
+    <string name="tv_night_mode_header">Modo Nocturno</string>
+    <string name="tv_notifications_header">Notificaciones</string>
+    <string name="tv_language_header">Idioma</string>
+
+    <string name="tv_help_and_assistance_header">Ayuda y Asistencia</string>
+    <string name="tv_about_us_header">Acerca de Nosotros</string>
+    <string name="tv_contact_us_header">Contáctanos</string>
+    <string name="tv_app_overview_header">Resumen de la Aplicación</string>
+    <string name="tv_faq_header">Preguntas Frecuentes</string>
+    <string name="tv_review_app_header">Reseña de la Aplicación</string>
+
+    <string name="tv_security_and_privacy_header">Seguridad y Privacidad del Perfil</string>
+    <string name="tv_edit_profile_header">Editar Perfil</string>
+    <string name="tv_update_email_header">Actualizar Correo Electrónico</string>
+    <string name="tv_change_password_header">Cambiar Contraseña</string>
+    <string name="tv_delete_account_header">Eliminar Cuenta</string>
+    <string name="tv_sign_out_header">Cerrar Sesión</string>
+
+    <!-- ResetPasswordActivity -->
+    <string name="tv_reset_password_header">Recuperación de Contraseña</string>
+    <string name="tv_reset_password_desc">Por favor ingresa tu dirección de correo electrónico abajo. Te enviaremos un correo electrónico con un enlace para restablecer tu contraseña.</string>
+    <string name="btn_reset_password">Restablecer Contraseña</string>
+
+    <!-- UploadProfileActivity -->
+    <string name="tv_upload_profile_header">Subir Perfil</string>
+    <string name="tv_select_image">Seleccionar Imagen</string>
+    <string name="tv_upload_image">Subir Imagen</string>
+    <string name="tv_go_back">Regresar</string>
+
+    <!-- UpdateProfileActivity -->
+    <string name="tv_update_profile_header">Actualizar Perfil</string>
+    <string name="btn_update_profile">Guardar</string>
+
+    <!-- UpdateEmailActivity -->
+    <string name="tv_update_email">Actualizar Correo Electrónico</string>
+    <string name="tv_update_email_desc">Autentica tu cuenta agregando tu correo electrónico actual y contraseña. Luego podrás cambiar tu correo electrónico.</string>
+    <string name="btn_authenticate_email">Autenticar</string>
+    <string name="tv_confirm_authentication_header">Tu cuenta aún no está autenticada.</string>
+    <string name="btn_update_email">Actualizar Correo Electrónico</string>
+
+    <!-- FaqActivity -->
+    <string name="tv_frequently_asked_questions_header">Preguntas Frecuentes</string>
+
+    <!-- HomeFragment -->
+    <string name="tv_current_sign_language">LSM</string>
+    <string name="tv_overall_progress">Progreso General: 3%</string>
+    <string name="tv_unit_one_header">Unidad 1</string>
+    <string name="tv_unit_two_header">Unidad 2</string>
+    <string name="tv_unit_three_header">Unidad 3</string>
+    <string name="tv_unit_four_header">Unidad 4</string>
+    <string name="tv_unit_five_header">Unidad 5</string>
+    <string name="tv_unit_six_header">Unidad 6</string>
+    <string name="tv_unit_seven_header">Unidad 7</string>
+    <string name="tv_unit_eight_header">Unidad 8</string>
+    <string name="tv_unit_nine_header">Unidad 9</string>
+    <string name="tv_unit_ten_header">Unidad 10</string>
+
+    <!-- UnitOneActivity -->
+    <string name="tv_overall_unit1_progress">Progreso General de la Unidad 1: 50%</string>
+    <string name="btn_back_unit_one">Atrás</string>
+    <string name="tv_lesson_one_header">ABC</string>
+    <string name="tv_lesson_two_header">Números</string>
+    <string name="tv_lesson_three_header">ABC 2</string>
+    <string name="tv_lesson_four_header">Lección 4</string>
+    <string name="tv_lesson_five_header">Lección 5</string>
+    <string name="tv_lesson_six_header">Lección 6</string>
+
+    <!-- IntroLessonOneActivity -->
+    <string name="tv_abc_header">Alfabeto en LSM</string>
+    <string name="tv_abc_desc">Identifica la letra representada por el signo LSM en la imagen.
+    Selecciona la letra correspondiente de las opciones proporcionadas.
+    ¡El objetivo es hacer coincidir el signo LSM con su letra del alfabeto correspondiente!</string>
+    <string name="tv_abc_exercise_header">Selecciona la letra correcta</string>
+
+    <!-- IntroLessonTwoActivity -->
+    <string name="btn_continue">Continuar</string>
+    <string name="tv_numbers_header">Números en LSM</string>
+    <string name="tv_numbers_desc">Estudia la imagen para familiarizarte con los signos LSM para los números.
+    Luego, para cada signo, selecciona el valor numérico correcto de las opciones proporcionadas.</string>
+    <string name="btn_finish">Terminar</string>
+    <string name="tv_number_exercise_header">Selecciona el número correcto</string>
+
+</resources>

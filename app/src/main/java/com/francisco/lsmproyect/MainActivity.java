@@ -17,7 +17,7 @@ import org.opencv.android.OpenCVLoader;
 
 import java.io.IOException;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends NightModeThemes {
 
     static {
         String TAG = "MainActivity";

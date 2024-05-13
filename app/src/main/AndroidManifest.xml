@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <uses-feature
         android:name="android.hardware.camera"
@@ -24,10 +25,65 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
+        android:screenOrientation="portrait"
         android:supportsRtl="true"
         android:theme="@style/Theme.LSMProyect"
-        tools:targetApi="31"
-        android:screenOrientation="portrait">
+        tools:targetApi="31">
+        <activity
+            android:name=".PROTOTYPE.PartFourLessonTwoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".PROTOTYPE.PartThreeLessonTwoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".PROTOTYPE.PartTwoLessonTwoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".PROTOTYPE.PartOneLessonTwoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".PROTOTYPE.PartFourLessonOneActivity"
+            android:exported="false" />
+        <activity
+            android:name=".PROTOTYPE.PartThreeLessonOneActivity"
+            android:exported="false" />
+        <activity
+            android:name=".PROTOTYPE.PartTwoLessonOneActivity"
+            android:exported="false" />
+        <activity
+            android:name=".PROTOTYPE.PartOneLessonOneActivity"
+            android:exported="false" />
+        <activity
+            android:name=".PROTOTYPE.IntroLessonTwoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".PROTOTYPE.IntroLessonOneActivity"
+            android:exported="false" />
+        <activity
+            android:name=".UnitOneActivity"
+            android:exported="false" />
+        <activity
+            android:name=".FaqActivity"
+            android:exported="false" />
+        <activity
+            android:name=".UpdateEmailActivity"
+            android:exported="false"
+            android:theme="@style/Theme.LSMProyect" />
+        <activity
+            android:name=".UpdateProfileActivity"
+            android:exported="false" />
+        <activity
+            android:name=".UploadProfileActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ResetPasswordActivity"
+            android:exported="false" />
+        <activity
+            android:name=".WelcomeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MenuActivity"
+            android:exported="false" />
         <activity
             android:name=".CameraActivity"
             android:exported="false" />
