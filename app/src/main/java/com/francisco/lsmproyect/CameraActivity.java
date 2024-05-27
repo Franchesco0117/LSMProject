@@ -1,5 +1,6 @@
 package com.francisco.lsmproyect;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.pm.PackageManager;
 import android.graphics.Camera;
@@ -64,12 +65,19 @@ public class CameraActivity extends Activity implements CameraBridgeViewBase.CvC
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
+        int MY_PERMISSIONS_REQUEST_CAMERA = 0;
+        // If camera permission is not given it will ask for it
+        if (ContextCompat.checkSelfPermission(CameraActivity.this, Manifest.permission.CAMERA)
+        == PackageManager.PERMISSION_DENIED) {
+            ActivityCompat.requestPermissions(CameraActivity.this, new String[]{Manifest.permission.CAMERA}, MY_PERMISSIONS_REQUEST_CAMERA);
+        }
+
         setContentView(R.layout.activity_camera);
         mOpenCvCameraView = (CameraBridgeViewBase) findViewById(R.id.frameSurface);
 
         try {
             objectDetectorClass = new objectDetectorClass
-                    (getAssets(), "hand_model.tflite", "custom_label.txt", 300, "LenguaSeniasMexicana.tflite", 96);
+                    (getAssets(), "hand_model.tflite", "custom_label.txt", 300, "Sign_language_model.tflite", 96);
             Log.d("MainActivity", "Modelo exitosamente cargado");
 
         } catch (IOException e) {

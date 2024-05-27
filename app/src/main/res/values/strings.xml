@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">LSMProject</string>
+    <string name="app_name" translatable="false">LSMProject</string>
 
     <!-- MainActivity -->
     <string name="tv_welcome">Welcome</string>
@@ -168,5 +168,10 @@
         Then, for each sign, select the correct numerical value from the options provided.</string>
     <string name="btn_finish">Finish</string>
     <string name="tv_number_exercise_header">Select the correct number</string>
+
+    <!-- CombineLettersActivity -->
+    <string name="btn_add_combination_letters">Add</string>
+    <string name="btn_clear_combination_letters">Clear</string>
+    <string name="btn_speak_combination_letters">Speak</string>
 
 </resources>

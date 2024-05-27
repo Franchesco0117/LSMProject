@@ -168,4 +168,10 @@
     <string name="btn_finish">Terminar</string>
     <string name="tv_number_exercise_header">Selecciona el número correcto</string>
 
+    <!-- CombineLettersActivity -->
+    <string name="btn_add_combination_letters">Agregar</string>
+    <string name="btn_clear_combination_letters">Limpiar</string>
+    <string name="btn_speak_combination_letters">Hablar</string>
+
+
 </resources>

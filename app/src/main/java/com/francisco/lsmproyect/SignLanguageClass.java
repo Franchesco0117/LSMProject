@@ -1,9 +1,14 @@
 package com.francisco.lsmproyect;
 
+import android.content.Context;
 import android.content.res.AssetFileDescriptor;
 import android.content.res.AssetManager;
 import android.graphics.Bitmap;
+import android.speech.tts.TextToSpeech;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
 
 import org.opencv.android.Utils;
 import org.opencv.core.Core;
@@ -26,10 +31,11 @@ import java.nio.ByteOrder;
 import java.nio.channels.FileChannel;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.TreeMap;
 
-public class objectDetectorClass {
+public class SignLanguageClass {
     // interpreter es usado para cargar el modelo y predecir
     private Interpreter interpreter;
     // Crear otro interpreter para el modelo Sign_language_model
@@ -47,9 +53,13 @@ public class objectDetectorClass {
     private int height = 0;
     private int width = 0;
     private int ClassificationInputSize = 0;
+    private String finalText = "";
+    private String currentText = "";
+    private TextToSpeech tts;
 
-    objectDetectorClass
-            (AssetManager assetManager, String modelPath, String labelPath, int inputSize, String classificationModel, int classificationInput) throws IOException {
+    SignLanguageClass (Context context, Button btnClear, Button btnAdd, TextView tvChange, Button btnSpeak,
+                       AssetManager assetManager, String modelPath, String labelPath, int inputSize, String classificationModel,
+                       int classificationInput) throws IOException {
         INPUT_SIZE = inputSize;
         ClassificationInputSize = classificationInput;
 
@@ -68,10 +78,46 @@ public class objectDetectorClass {
         Interpreter.Options options2 = new Interpreter.Options();
         options2.setNumThreads(2);
         interpreter2 = new Interpreter(loadModelFile(assetManager, classificationModel), options2);
+
+        btnClear.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finalText = "";
+
+                tvChange.setText(finalText);
+            }
+        });
+
+        btnAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                finalText = finalText + currentText;
+                tvChange.setText(finalText);
+            }
+        });
+
+        tts = new TextToSpeech(context, new TextToSpeech.OnInitListener() {
+            @Override
+            public void onInit(int i) {
+
+                if (i != TextToSpeech.ERROR) {
+                    tts.setLanguage(Locale.ENGLISH);
+                }
+            }
+        });
+
+        btnSpeak.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                tts.speak(finalText, TextToSpeech.QUEUE_FLUSH, null);
+            }
+        });
     }
 
     private ByteBuffer loadModelFile(AssetManager assetManager, String modelPath) throws IOException {
-         // fileDescriptor usado para obtener la descripcion del archivo
+        // fileDescriptor usado para obtener la descripcion del archivo
         AssetFileDescriptor fileDescriptor = assetManager.openFd(modelPath);
 
         FileInputStream inputStream = new FileInputStream(fileDescriptor.getFileDescriptor());
@@ -215,10 +261,12 @@ public class objectDetectorClass {
                 interpreter2.run(byteBuffer1, outputClassValue);
 
                 // OPCIONAL: Para ver los valores de outputClassValue
-                Log.d("objectDetectionClass", "outputClassValue:" + outputClassValue[0][0] + "  " + getAlphabets(outputClassValue[0][0]));
+                Log.d("SignLanguageClass", "outputClassValue:" + outputClassValue[0][0] + "  " + getAlphabets(outputClassValue[0][0]));
 
                 // Converir outputClassValue a Alfabeto
                 String signVal = getAlphabets(outputClassValue[0][0]);
+
+                currentText = signVal;
 
                 // Dibujar rectangulo en el frame original  - Punto inicial box   - Punto final box       - color de box     - grueso
                 Imgproc.rectangle(rotatedMatImage, new Point(x1, y1), new Point(x2, y2), new Scalar(255, 155, 155), 2);
